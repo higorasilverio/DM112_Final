@@ -17,7 +17,7 @@ public class EmailClient {
 	private String restURL = "http://localhost:8080/UtilityDM112/api/";
 
 	//TODO: modificar este email para enviar para outro endereço
-	private static String sendTo = "rrocha.roberto@gmail.com";
+	private static String sendTo = "higor.silverio@ncc.com.br";
 	
 	public MailStatusResponse callSendMailService(String from, String password, String to, byte[] content) {
 

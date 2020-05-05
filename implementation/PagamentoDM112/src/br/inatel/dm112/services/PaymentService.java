@@ -19,7 +19,7 @@ public class PaymentService {
 
 	//TODO: Fique à vontade para alterar estes atributos
 	//TODO: Para enviar um email através do gmail, é necessário habilitar o SMTP da conta de envio.
-	private String sendToAddress = "rrocha.roberto@gmail.com";
+	private String sendToAddress = "higor.silverio@ncc.com.br";
 	private String sendFromAddress = "robertorr9@gmail.com";
 	private String sendPassAddress = "robertodm112";
 
