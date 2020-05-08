@@ -2,6 +2,8 @@ package br.inatel.dm112.rest.support;
 
 public class OrderDuplicateException extends RuntimeException {
 
+	private static final long serialVersionUID = 1L;
+
 	public OrderDuplicateException() {
 	}
 

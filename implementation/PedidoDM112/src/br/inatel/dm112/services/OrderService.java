@@ -26,17 +26,19 @@ public class OrderService {
 			order = convertToOrder(entity);
 		}
 		return order;
+		
 	}
 
-	public List<Order> searchOrders(String cpf) {
+	public List<Order> searchOrders(String deliverymanCpf) {
 		
-		List<OrderEntity> entities = orderDAO.getOrdersByCPF(cpf);
+		List<OrderEntity> entities = orderDAO.getOrdersByCPF(deliverymanCpf);
 		List<Order> orders = new ArrayList<Order>();
 		for (OrderEntity entity : entities) {
 			Order order = convertToOrder(entity);
 			orders.add(order);
 		}
 		return orders;
+		
 	}
 
 	public void updateOrder(Order order) {
@@ -48,7 +50,7 @@ public class OrderService {
 			System.out.println("OrderImpl updateOrder - atualizou o pedido com número: " + order.getNumber());
 		} else {
 			throw new OrderNotFoundException(
-					"Pedido não encontrado para fazer update: cpf: " + order.getCpf() + "valor: " + order.getValue());
+					"Pedido não encontrado para fazer update: cpf: " + order.getDeliverymanCpf());
 		}
 	}
 
@@ -63,7 +65,7 @@ public class OrderService {
 			System.out.println("OrderImpl updateOrder - pedido não encontrado com número: " + order.getNumber());
 			orderDAO.insert(entity);
 		} else {
-			throw new OrderDuplicateException("Pedido já existe: " + order.getNumber());//TODO: melhorar a semântica
+			throw new OrderDuplicateException("Pedido já existe: " + order.getNumber());
 		}
 	}
 
@@ -81,22 +83,20 @@ public class OrderService {
 	private Order convertToOrder(OrderEntity entity) {
 		Order order = new Order(
 				entity.getNumber(), 
-				entity.getCpf(), 
-				entity.getValue(), 
+				entity.getDeliverymanCpf(),  
 				entity.getStatus(), 
-				entity.getOrderDate(),
-				entity.getIssueDate(), 
-				entity.getPaymentDate());
+				entity.getOrderCreationDate(), 
+				entity.getReceiverCpf(), 
+				entity.getOrderDeliveredDate());
 		return order;
 	}
 
 	private void convertOrderToEntityWithoutPK(Order order, OrderEntity entity) {
-		entity.setCpf(order.getCpf());
-		entity.setValue(order.getValue());
+		entity.setDeliverymanCpf(order.getDeliverymanCpf());
 		entity.setStatus(order.getStatus());
-		entity.setOrderDate(order.getOrderDate());
-		entity.setIssueDate(order.getIssueDate());
-		entity.setPaymentDate(order.getPaymentDate());
+		entity.setOrderCreationDate(order.getOrderCreationDate());
+		entity.setReceiverCpf(order.getReceiverCpf());
+		entity.setOrderDeliveredDate(order.getOrderDeliveredDate());
 	}
 	
 }

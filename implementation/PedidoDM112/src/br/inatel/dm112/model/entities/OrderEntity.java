@@ -19,24 +19,19 @@ public class OrderEntity {
 	@Column(name = "numero")
 	private int number;
 
-	private String cpf;
-
-	@Column(name = "valor")
-	private float value;
+	private String deliverymanCpf;
 
 	private int status;
 
-	@Column(name = "dataPedido", nullable = false)
+	@Column(name = "dataCriacaoPedido", nullable = false)
 	@Temporal(TemporalType.DATE)
-	private Date orderDate;
-
-	@Column(name = "dataEmissao", nullable = true)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date issueDate;
-
-	@Column(name = "dataPagamento", nullable = true)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date paymentDate;
+	private Date orderCreationDate;
+	
+	private String receiverCpf;
+	
+	@Column(name = "dataEntregaPedido", nullable = false)
+	@Temporal(TemporalType.DATE)
+	private Date orderDeliveredDate;
 
 	public OrderEntity() {
 		this.status = STATUS.FILLED.ordinal();
@@ -50,14 +45,6 @@ public class OrderEntity {
 		this.number = number;
 	}
 
-	public float getValue() {
-		return value;
-	}
-
-	public void setValue(float value) {
-		this.value = value;
-	}
-
 	public int getStatus() {
 		return status;
 	}
@@ -66,42 +53,43 @@ public class OrderEntity {
 		this.status = status;
 	}
 
-	public Date getOrderDate() {
-		return orderDate;
+	public Date getOrderCreationDate() {
+		return orderCreationDate;
 	}
 
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
+	public void setOrderCreationDate(Date orderCreationDate) {
+		this.orderCreationDate = orderCreationDate;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getDeliverymanCpf() {
+		return deliverymanCpf;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setDeliverymanCpf(String deliverymanCpf) {
+		this.deliverymanCpf = deliverymanCpf;
+	}
+	
+	public String getReceiverCpf() {
+		return receiverCpf;
 	}
 
-	public Date getIssueDate() {
-		return issueDate;
+	public void setReceiverCpf(String receiverCpf) {
+		this.receiverCpf = receiverCpf;
 	}
 
-	public void setIssueDate(Date issueDate) {
-		this.issueDate = issueDate;
+	public Date getOrderDeliveredDate() {
+		return orderDeliveredDate;
 	}
 
-	public Date getPaymentDate() {
-		return paymentDate;
-	}
-
-	public void setPaymentDate(Date paymentDate) {
-		this.paymentDate = paymentDate;
+	public void setOrderDeliveredDate(Date orderDeliveredDate) {
+		this.orderDeliveredDate = orderDeliveredDate;
 	}
 
 	@Override
 	public String toString() {
-		return "OrderEntity [number=" + number + ", cpf=" + cpf + ", value=" + value + ", status=" + status + ", orderDate="
-				+ orderDate + ", issueDate=" + issueDate + ", paymentDate=" + paymentDate + "]";
+		return "OrderEntity [number=" + number + ", deliverymanCpf=" + deliverymanCpf + ", status=" + status
+				+ ", orderCreationDate=" + orderCreationDate + ", receiverCpf=" + receiverCpf + ", orderDeliveredDate="
+				+ orderDeliveredDate + "]";
 	}
 
 }
