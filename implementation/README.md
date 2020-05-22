@@ -44,8 +44,8 @@ A mesma função pode ser realizada através do Postman:
 • Body media type: JSON
 • Body content:
 {
-"from": "robertorr9@gmail.com",
-"password": "robertodm112",
+"from": " 'Inserir o email aqui' ",
+"password": " 'Inserir a senha do e-mail aqui' ",
 "to": "higor.asilverio_eng@hotmail.com",
 "message": "Confirmação de entrega do pedido"
 }
